@@ -1,0 +1,12 @@
+title: Saad Bin Ekram
+description: Research notes and writing on nanoelectronics and non-volatile memory.
+url: "https://saadbekram.github.io"
+baseurl: ""
+permalink: /blog/:title/
+markdown: kramdown
+
+# Show newest posts first is default. Files below are not part of the built site.
+exclude:
+  - CV_SAAD.pdf
+  - CV_Saad_.pdf
+  - README.md
