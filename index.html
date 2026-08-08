@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saad Bin Ekram — Academic Portfolio</title>
+<meta name="description" content="Saad Bin Ekram — MSc Nanoscience & Nanotechnology (Nanoelectronics), TU Dresden / KU Leuven. Research in semiconductor memory devices and device physics of non-volatile memory.">
+<style>
+  :root{
+    --bg:#0f1420; --bg2:#141b2b; --card:#182236; --line:#26324a;
+    --ink:#e8edf6; --muted:#9fb0cc; --soft:#c4d0e6;
+    --accent:#5b9dff; --accent2:#7c6bff; --chip:#1e293e;
+    --max:960px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 24px}
+
+  /* Nav */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(15,20,32,.82); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; height:60px}
+  nav .brand{font-weight:700; letter-spacing:.3px; font-size:1.05rem}
+  nav .links{display:flex; gap:22px; flex-wrap:wrap}
+  nav .links a{color:var(--soft); font-size:.92rem; font-weight:500}
+  nav .links a:hover{color:var(--accent); text-decoration:none}
+  @media(max-width:640px){ nav .links{display:none} }
+
+  /* Hero */
+  header.hero{
+    background:
+      radial-gradient(1200px 500px at 80% -10%, rgba(124,107,255,.20), transparent 60%),
+      radial-gradient(900px 400px at 0% 0%, rgba(91,157,255,.18), transparent 55%),
+      var(--bg);
+    border-bottom:1px solid var(--line);
+    padding:64px 0 52px;
+  }
+  .hero-grid{display:flex; gap:34px; align-items:center; flex-wrap:wrap}
+  .avatar{
+    width:132px; height:132px; border-radius:50%; flex:none;
+    display:grid; place-items:center; font-size:2.6rem; font-weight:700;
+    color:#fff; letter-spacing:1px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    box-shadow:0 10px 30px rgba(91,157,255,.35);
+  }
+  .hero h1{font-size:2.5rem; line-height:1.1; margin-bottom:8px; letter-spacing:.2px}
+  .hero .role{color:var(--soft); font-size:1.12rem; font-weight:500}
+  .hero .aff{color:var(--muted); font-size:.98rem; margin-top:4px}
+  .contact{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
+  .contact a{
+    display:inline-flex; align-items:center; gap:7px;
+    background:var(--chip); border:1px solid var(--line);
+    color:var(--soft); padding:7px 13px; border-radius:999px; font-size:.86rem;
+  }
+  .contact a:hover{border-color:var(--accent); color:var(--ink); text-decoration:none}
+  .contact svg{width:15px; height:15px; fill:currentColor}
+
+  /* Sections */
+  section{padding:52px 0; border-bottom:1px solid var(--line)}
+  .eyebrow{
+    text-transform:uppercase; letter-spacing:2px; font-size:.74rem;
+    color:var(--accent); font-weight:700; margin-bottom:10px;
+  }
+  h2{font-size:1.7rem; margin-bottom:22px; letter-spacing:.2px}
+  h2 .n{color:var(--muted); font-weight:600; font-size:1.1rem; margin-right:8px}
+  .lead{color:var(--soft); font-size:1.06rem; max-width:760px}
+
+  /* Cards / entries */
+  .entry{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:22px 24px; margin-bottom:16px;
+  }
+  .entry .top{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:baseline}
+  .entry h3{font-size:1.14rem; margin-bottom:2px}
+  .entry .sub{color:var(--accent); font-weight:600; font-size:.96rem}
+  .entry .when{color:var(--muted); font-size:.85rem; white-space:nowrap; font-variant-numeric:tabular-nums}
+  .entry .meta{color:var(--muted); font-size:.9rem; margin:2px 0 10px}
+  .entry ul{list-style:none; margin-top:8px}
+  .entry li{position:relative; padding-left:20px; margin-bottom:7px; color:var(--soft); font-size:.96rem}
+  .entry li::before{content:""; position:absolute; left:2px; top:.62em; width:6px; height:6px;
+    border-radius:50%; background:var(--accent)}
+  .tag{display:inline-block; background:var(--chip); border:1px solid var(--line);
+    color:var(--soft); font-size:.76rem; padding:3px 9px; border-radius:6px; margin:0 6px 6px 0}
+
+  /* Skills */
+  .skills-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px}
+  .skill-card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 20px}
+  .skill-card h4{font-size:.95rem; color:var(--ink); margin-bottom:12px; display:flex; align-items:center; gap:8px}
+  .skill-card h4 .dot{width:8px; height:8px; border-radius:50%; background:var(--accent)}
+  .chips{display:flex; flex-wrap:wrap; gap:7px}
+  .chips span{background:var(--chip); border:1px solid var(--line); color:var(--soft);
+    font-size:.82rem; padding:5px 11px; border-radius:999px}
+
+  /* Two-column simple lists */
+  .cols{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+  @media(max-width:640px){ .cols{grid-template-columns:1fr} }
+  .mini{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 20px}
+  .mini h4{font-size:1rem; margin-bottom:10px}
+  .mini ul{list-style:none}
+  .mini li{position:relative; padding-left:18px; margin-bottom:8px; color:var(--soft); font-size:.94rem}
+  .mini li::before{content:""; position:absolute; left:0; top:.6em; width:6px; height:6px;
+    border-radius:50%; background:var(--accent2)}
+
+  .pub{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:20px 24px}
+  .pub p{color:var(--soft); font-size:.97rem}
+  .pub .authors b{color:var(--ink)}
+  .pub .venue{font-style:italic; color:var(--muted)}
+
+  footer{padding:34px 0 46px; text-align:center; color:var(--muted); font-size:.88rem}
+  footer a{color:var(--soft)}
+  .toplink{margin-top:10px; display:inline-block}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="brand">Saad Bin Ekram</span>
+    <div class="links">
+      <a href="#about">Research</a>
+      <a href="#education">Education</a>
+      <a href="#experience">Experience</a>
+      <a href="#publications">Publications</a>
+      <a href="#skills">Skills</a>
+      <a href="#teaching">Teaching</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div class="avatar">SE</div>
+    <div>
+      <h1>Saad Bin Ekram</h1>
+      <div class="role">MSc Nanoscience &amp; Nanotechnology — Nanoelectronics</div>
+      <div class="aff">Erasmus Mundus Scholar · TU Dresden, Germany &amp; KU Leuven, Belgium</div>
+      <div class="contact">
+        <a href="mailto:saad_bin.ekram@mailbox.tu-dresden.de">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5z"/></svg>
+          TU Dresden email
+        </a>
+        <a href="mailto:saadbin.ekram@student.kuleuven.be">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5z"/></svg>
+          KU Leuven email
+        </a>
+        <a href="https://www.linkedin.com/in/saadbinekram" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 18.34V10.4H5.7v7.94h2.64zM7.02 9.24a1.53 1.53 0 1 0 0-3.06 1.53 1.53 0 0 0 0 3.06zm11.32 9.1v-4.35c0-2.33-1.24-3.41-2.9-3.41-1.34 0-1.94.74-2.27 1.26v-1.08h-2.64c.03.75 0 7.94 0 7.94h2.64v-4.43c0-.24.02-.48.09-.65.19-.47.63-.96 1.36-.96.96 0 1.35.73 1.35 1.8v4.24h2.61z"/></svg>
+          LinkedIn
+        </a>
+        <a href="#" target="_blank" rel="noopener" title="Add your Google Scholar link">
+          <svg viewBox="0 0 24 24"><path d="M12 2 1 8l11 6 9-4.91V16h2V8L12 2zM5 13.18v3.2L12 20l7-3.62v-3.2L12 17l-7-3.82z"/></svg>
+          Google Scholar
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section id="about">
+  <div class="wrap">
+    <div class="eyebrow">Research Interests</div>
+    <h2>Semiconductor memory &amp; device physics of non-volatile memory</h2>
+    <p class="lead">
+      My research is in semiconductor memory devices and the device physics of non-volatile memory —
+      particularly how reliability behaviour such as endurance, retention, and the memory window depends
+      on device structure, materials, and processing. I am especially interested in how the reliability of
+      a memory device holds up as it is scaled and as new material systems are introduced, and I am keen to
+      extend this toward two-dimensional semiconductors such as transition metal dichalcogenides, where
+      nanofabrication and device physics must be developed together, and toward the memory and logic
+      devices that could be built from them.
+    </p>
+    <div style="margin-top:18px">
+      <span class="tag">Non-volatile memory</span>
+      <span class="tag">Endurance &amp; retention</span>
+      <span class="tag">Memory window</span>
+      <span class="tag">Device scaling</span>
+      <span class="tag">2D semiconductors / TMDs</span>
+      <span class="tag">Ferroelectric &amp; resistive switching</span>
+      <span class="tag">Nanofabrication</span>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="eyebrow">Education</div>
+    <h2><span class="n">01</span>Academic Background</h2>
+
+    <div class="entry">
+      <div class="top">
+        <div>
+          <h3>Erasmus Mundus MSc — Nanoscience &amp; Nanotechnology</h3>
+          <div class="sub">KU Leuven, Belgium &amp; TU Dresden, Germany</div>
+        </div>
+        <div class="when">Sep 2024 – Sep 2026 (expected)</div>
+      </div>
+      <div class="meta">Major: Nanoelectronic Systems · Erasmus Mundus Scholar</div>
+      <ul>
+        <li><b>Master's thesis (in progress):</b> UV-Induced Crosslinking of Conjugated Polymers: Implications for Device Performance — Supervisor: Prof. Dr. Stefan Mannsfeld. Fabricate and characterise thin-film non-volatile memory devices; extract the memory window and assess endurance and retention through I–V transfer curve measurements (SPA, SMU).</li>
+        <li><b>Relevant coursework:</b> Materials Physics &amp; Technology for Nanoelectronics, Semiconductor Device Theory, Quantum Physics, Semiconductor Physics, Physical Material Characterisation Techniques, Molecular Electronics, Optoelectronic Devices &amp; Systems, Chemistry at the nanometre scale.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="top">
+        <div>
+          <h3>BSc — Electrical &amp; Electronic Engineering</h3>
+          <div class="sub">Khulna University of Engineering &amp; Technology (KUET), Bangladesh</div>
+        </div>
+        <div class="when">Feb 2017 – Apr 2022</div>
+      </div>
+      <div class="meta">CGPA: 3.81 / 4.00 · Dean's List (Years 1, 2 &amp; Final year) · University Merit Scholarship throughout</div>
+      <ul>
+        <li><b>Thesis:</b> First Principles Study of Cesium Lead Halide-Based All-Inorganic Perovskite Solar Cells — electronic and optical property modelling of inorganic perovskites via DFT.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="eyebrow">Research &amp; Projects</div>
+    <h2><span class="n">02</span>Research &amp; Project Experience</h2>
+
+    <div class="entry">
+      <div class="top">
+        <div>
+          <h3>UV Treatment of Polymer Layers in Oxygen-Free Environments</h3>
+          <div class="sub">CFAED — Chair of Organic Devices, TU Dresden</div>
+        </div>
+        <div class="when">2026</div>
+      </div>
+      <ul>
+        <li>Investigated the influence of UV treatment on polymer thin-film thickness and surface properties under controlled oxygen-free conditions.</li>
+        <li>Characterised material changes using profilometry and atomic force microscopy (AFM); analysed UV–polymer interaction mechanisms.</li>
+        <li>Conducted systematic experimental measurements and interpreted results to correlate process parameters with material behaviour.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="top">
+        <div>
+          <h3>Optical NEMS XOR Gate Based on Si Photonic Crystal Structures</h3>
+          <div class="sub">KU Leuven – imec (P&amp;O Project)</div>
+        </div>
+        <div class="when">2025</div>
+      </div>
+      <ul>
+        <li>Performed coupled optical–mechanical multiphysics device simulations in COMSOL Multiphysics to study photonic band structures and membrane bending behaviour.</li>
+        <li>Analysed transmission and switching characteristics using MATLAB.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="publications">
+  <div class="wrap">
+    <div class="eyebrow">Publications</div>
+    <h2><span class="n">03</span>Publications</h2>
+    <div class="pub">
+      <p class="authors">Rahman, A.; Rahman, M.T.; Chowdhury, M.A.; <b>Bin Ekram, S.</b>; Uddin, M.M.K.; Islam, M.R.; Dong, L. (2023).
+        Emerging 2D borophene: Synthesis, characterisation, and sensing applications.
+        <span class="venue">Sensors and Actuators A: Physical</span>, 359.</p>
+      <p style="margin-top:8px"><a href="https://doi.org/10.1016/j.sna.2023.114468" target="_blank" rel="noopener">DOI: 10.1016/j.sna.2023.114468 →</a></p>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="eyebrow">Technical Skills</div>
+    <h2><span class="n">04</span>Skills &amp; Tools</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h4><span class="dot"></span>Material Characterisation</h4>
+        <div class="chips"><span>AFM</span><span>SPA</span><span>SMU</span><span>UV-Vis</span><span>Profilometry</span></div>
+      </div>
+      <div class="skill-card">
+        <h4><span class="dot"></span>Thin-Film &amp; Cleanroom</h4>
+        <div class="chips"><span>Shear coating</span><span>Spin coating</span><span>Thermal Evaporation (PVD)</span><span>Glove box</span></div>
+      </div>
+      <div class="skill-card">
+        <h4><span class="dot"></span>Simulation &amp; Modelling</h4>
+        <div class="chips"><span>MATLAB</span><span>Simulink</span><span>COMSOL Multiphysics</span><span>Quantum ESPRESSO</span><span>PSpice / Proteus</span></div>
+      </div>
+      <div class="skill-card">
+        <h4><span class="dot"></span>Programming</h4>
+        <div class="chips"><span>Python</span><span>C / C++</span><span>HTML (basics)</span></div>
+      </div>
+      <div class="skill-card">
+        <h4><span class="dot"></span>Data Analysis</h4>
+        <div class="chips"><span>MATLAB</span><span>OriginPro</span><span>Microsoft Excel</span></div>
+      </div>
+      <div class="skill-card">
+        <h4><span class="dot"></span>Document Preparation</h4>
+        <div class="chips"><span>LaTeX</span><span>Microsoft Word</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="teaching">
+  <div class="wrap">
+    <div class="eyebrow">Experience &amp; Service</div>
+    <h2><span class="n">05</span>Teaching, Awards &amp; Activities</h2>
+
+    <div class="cols">
+      <div class="mini">
+        <h4>Teaching Experience</h4>
+        <ul>
+          <li><b>Lecturer, Electrical &amp; Electronic Engineering</b> — Southeast University, Dhaka, Bangladesh (Oct 2023 – Aug 2024)</li>
+          <li><b>Lecturer, Electrical &amp; Electronic Engineering</b> — Northern University Bangladesh (NUB), Dhaka (May 2023 – Oct 2023)</li>
+        </ul>
+      </div>
+      <div class="mini">
+        <h4>Honours &amp; Awards</h4>
+        <ul>
+          <li>Erasmus Mundus Scholarship — European Union (2024–2026)</li>
+          <li>Dean's List — KUET (Years 1, 2 and Final year)</li>
+          <li>University Merit Scholarship — KUET (throughout BSc)</li>
+        </ul>
+      </div>
+      <div class="mini">
+        <h4>Roles &amp; Activities</h4>
+        <ul>
+          <li>Deputy Coordinator, Event &amp; Project Management — Erasmus Mundus Association Bangladesh (Jan 2025 – present)</li>
+          <li>Student Ambassador — KU Leuven (Oct 2024 – Aug 2025)</li>
+          <li>Student Representative, Permanent Education Committee — EMM NANO (Oct 2024 – Aug 2025)</li>
+          <li>General Member — IEEE Student Branch KUET (2020–2022)</li>
+        </ul>
+      </div>
+      <div class="mini">
+        <h4>References</h4>
+        <ul>
+          <li><b>Prof. Dr. Stefan Mannsfeld</b> — Head of Chair, Organic Devices, TU Dresden · <a href="mailto:stefan.mannsfeld@tu-dresden.de">stefan.mannsfeld@tu-dresden.de</a></li>
+          <li><b>Prof. Dr. Anne Verhulst</b> — Professor, Electronic Circuits &amp; Systems (ECS), KU Leuven · <a href="mailto:anne.verhulst@kuleuven.be">anne.verhulst@kuleuven.be</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>© 2026 Saad Bin Ekram · MSc Nanoscience &amp; Nanotechnology (Nanoelectronics)</div>
+    <a class="toplink" href="#">↑ Back to top</a>
+  </div>
+</footer>
+
+</body>
+</html>
