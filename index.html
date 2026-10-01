@@ -26,7 +26,7 @@
     background:var(--navy); color:#dbe4ee; padding:38px 26px; display:flex; flex-direction:column;
   }
   .sidebar .avatar{
-    width:96px; height:96px; border-radius:50%; display:grid; place-items:center;
+    width:96px; height:96px; border-radius:50%; object-fit:cover; display:grid; place-items:center;
     font-size:2rem; font-weight:700; color:var(--navy); letter-spacing:1px;
     background:var(--gold); margin-bottom:20px;
   }
@@ -109,7 +109,7 @@
 <body>
 
 <aside class="sidebar">
-  <div class="avatar">SE</div>
+  <img class="avatar" src="images/profile.jpg" alt="Saad Bin Ekram">
   <h1>Saad Bin Ekram</h1>
   <div class="role">MSc Nanoscience &amp; Nanotechnology — Nanoelectronics</div>
   <div class="aff">Erasmus Mundus Scholar<br>TU Dresden, Germany &amp; KU Leuven, Belgium</div>
